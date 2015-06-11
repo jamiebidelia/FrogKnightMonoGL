@@ -17,14 +17,10 @@ namespace FrogKnightMonoGL
 {
     class Controller
     {
-        /*public bool LeftActivated { get; set; }
-        public bool RightActivated { get; set; }
-        public bool JumpingUp { get; set; }
-        public bool FallingDown { get; set; }
-        public bool Crouching { get; set; }*/
-
         public bool LeftPressed { get; set; }
         public bool RightPressed { get; set; }
+        public bool JumpingUp { get; set; }
+        public bool FallingDown { get; set; }
         public bool CrouchPressed { get; set; }
 
 
@@ -33,10 +29,12 @@ namespace FrogKnightMonoGL
         {
             LeftPressed = false;
             RightPressed = false;
+            JumpingUp = false;
+            FallingDown = false;
             CrouchPressed = false;
         }
 
-        public void KeyCheck()
+        public void KeyCheck(FrogKnight gameState)
         {
 
             KeyboardState keyState = Keyboard.GetState();
@@ -75,6 +73,70 @@ namespace FrogKnightMonoGL
             {
                 CrouchPressed = false;
                 Debug.WriteLine("S key is up.");
+            }
+
+            if (keyState.IsKeyDown(Keys.W) && JumpingUp == false)
+            {
+                JumpingUp = true;
+                Debug.WriteLine("W key is down.");
+            }
+
+            if (keyState.IsKeyUp(Keys.W) && JumpingUp == true)
+            {
+                JumpingUp = false;
+                Debug.WriteLine("W key is up.");
+            }
+
+
+
+
+            //Exit the game if pressed.
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                gameState.Exit();
+            }
+        }
+
+
+
+
+        //We need to make sure the character isn't trying to move left and right at the same time.
+        public bool validLeftRight()
+        {
+            if (LeftPressed && RightPressed)
+                return false;
+
+            return true;
+        }
+
+        //HELPER METHODS:
+        //These aren't complicated, but having a consistent place to check the logic should make the control code easier.
+
+        //This is just a nice way to transition from jumping to falling.
+        public void jumpingToFalling()
+        {
+            if (JumpingUp)
+            {
+                JumpingUp = false;
+                FallingDown = true;
+            }
+        }
+        
+        //If we're falling, stop that.
+        public void hitGround()
+        {
+            if (FallingDown)
+            {
+                FallingDown = false;
+            }
+        }
+
+        //We might need to stand up during cutscenes.
+        public void standUp()
+        {
+            if (CrouchPressed)
+            {
+                CrouchPressed = false;
             }
         }
 

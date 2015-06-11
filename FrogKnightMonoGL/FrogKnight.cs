@@ -44,6 +44,11 @@ namespace FrogKnightMonoGL
         {
             controller = new Controller();
             mainCharacter = new Character();
+
+            //For testing moving around the screen.
+            mainCharacter.myPosition.X = 300;
+            mainCharacter.myPosition.Y = 100;
+
             Content.RootDirectory = "Content";
             jukeBox = new Jukebox(this);
 
@@ -74,36 +79,20 @@ namespace FrogKnightMonoGL
             // TODO: Unload any non ContentManager content here
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /** <summary>
+            Update() is called every update cycle giving us a place to change the game state.
+            Here we read the controller input and movement of the character.  We then update
+            the global game state.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values.</param>*/
         protected override void Update(GameTime gameTime)
         {
+            controller.KeyCheck(this);
+            mainCharacter.move(controller);
 
-            // TODO: Add your update logic here
-            CheckControls();
             base.Update(gameTime);
         }
 
-        //Here we poll the controls 
-        protected void CheckControls()
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                Exit();
-            }
-
-            controller.KeyCheck();
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-                Debug.WriteLine("Playing.");
-                jukeBox.PlaySong();
-            }
-
-        }
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -120,7 +109,7 @@ namespace FrogKnightMonoGL
 
             spriteBatch.Draw(titleLogo, new Vector2(100, 001), Color.White);
 
-            spriteBatch.Draw(frogImage, new Vector2(300, 100), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(frogImage, new Vector2(mainCharacter.myPosition.X, mainCharacter.myPosition.Y), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f);
 
             spriteBatch.End();
 

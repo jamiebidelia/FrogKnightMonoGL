@@ -7,8 +7,7 @@ namespace FrogKnightMonoGL
 {
     class Character
     {
-        Position myPosition;
-        MovementState myMovement;
+        public Position myPosition;
 
         int Lives { get; set; }
         int Health { get; set; }
@@ -21,8 +20,7 @@ namespace FrogKnightMonoGL
         {
             Lives = 5;
             Health = 5;
-            myPosition = new Position();
-            myMovement = new MovementState();
+            myPosition = newPosition;
 
         }
 
@@ -31,7 +29,23 @@ namespace FrogKnightMonoGL
             Lives = 5;
             Health = 5;
             myPosition = new Position();
-            myMovement = new MovementState();
+            //myMovement = new MovementState();
+        }
+
+        public void move(Controller controller)
+        {
+            if (controller.LeftPressed)
+                moveLeft();
+
+            if (controller.RightPressed)
+                moveRight();
+
+            if (controller.JumpingUp)
+                moveUp();
+
+            if (controller.CrouchPressed)
+                moveDown();
+
         }
 
         public void moveLeft()
@@ -44,6 +58,15 @@ namespace FrogKnightMonoGL
             myPosition.X++;
         }
 
+        public void moveDown()
+        {
+            myPosition.Y++;
+        }
+
+        public void moveUp()
+        {
+            myPosition.Y--;
+        }
 
     }
 }

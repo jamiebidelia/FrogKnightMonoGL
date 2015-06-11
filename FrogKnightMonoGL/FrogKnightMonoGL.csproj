@@ -41,7 +41,6 @@
     <Compile Include="Character.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Jukebox.cs" />
-    <Compile Include="MovementState.cs" />
     <Compile Include="FrogKnight.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="RunGame.cs" />
