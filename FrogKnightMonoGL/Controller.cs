@@ -42,49 +42,49 @@ namespace FrogKnightMonoGL
             if (keyState.IsKeyDown(Keys.A) && LeftPressed == false)
             {
                 LeftPressed = true;
-                Debug.WriteLine("A key is down.");
+                //Debug.WriteLine("A key is down.");
             }
 
             if (keyState.IsKeyUp(Keys.A) && LeftPressed == true)
             {
                 LeftPressed = false;
-                Debug.WriteLine("A key is up.");
+                //Debug.WriteLine("A key is up.");
             }
 
             if (keyState.IsKeyDown(Keys.D) && RightPressed == false)
             {
                 RightPressed = true;
-                Debug.WriteLine("D key is down.");
+                //Debug.WriteLine("D key is down.");
             }
 
             if (keyState.IsKeyUp(Keys.D) && RightPressed == true)
             {
                 RightPressed = false;
-                Debug.WriteLine("D key is up.");
+                //Debug.WriteLine("D key is up.");
             }
 
             if (keyState.IsKeyDown(Keys.S) && CrouchPressed == false)
             {
                 CrouchPressed = true;
-                Debug.WriteLine("S key is down.");
+                //Debug.WriteLine("S key is down.");
             }
 
             if (keyState.IsKeyUp(Keys.S) && CrouchPressed == true)
             {
                 CrouchPressed = false;
-                Debug.WriteLine("S key is up.");
+                //Debug.WriteLine("S key is up.");
             }
 
             if (keyState.IsKeyDown(Keys.W) && JumpingUp == false)
             {
                 JumpingUp = true;
-                Debug.WriteLine("W key is down.");
+                //Debug.WriteLine("W key is down.");
             }
 
             if (keyState.IsKeyUp(Keys.W) && JumpingUp == true)
             {
                 JumpingUp = false;
-                Debug.WriteLine("W key is up.");
+                //Debug.WriteLine("W key is up.");
             }
 
 

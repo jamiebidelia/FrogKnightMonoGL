@@ -5,9 +5,9 @@ using System.Text;
 
 namespace FrogKnightMonoGL
 {
-    class Character
+    class Character : GameEntity
     {
-        public Position myPosition;
+        //public Position myPosition;
 
         int Lives { get; set; }
         int Health { get; set; }
@@ -20,7 +20,7 @@ namespace FrogKnightMonoGL
         {
             Lives = 5;
             Health = 5;
-            myPosition = newPosition;
+            MyPosition = newPosition;
 
         }
 
@@ -28,7 +28,7 @@ namespace FrogKnightMonoGL
         {
             Lives = 5;
             Health = 5;
-            myPosition = new Position();
+            MyPosition = new Position();
             //myMovement = new MovementState();
         }
 
@@ -50,22 +50,22 @@ namespace FrogKnightMonoGL
 
         public void moveLeft()
         {
-            myPosition.X--;
+            MyPosition.X--;
         }
 
         public void moveRight()
         {
-            myPosition.X++;
+            MyPosition.X++;
         }
 
         public void moveDown()
         {
-            myPosition.Y++;
+            MyPosition.Y++;
         }
 
         public void moveUp()
         {
-            myPosition.Y--;
+            MyPosition.Y--;
         }
 
     }

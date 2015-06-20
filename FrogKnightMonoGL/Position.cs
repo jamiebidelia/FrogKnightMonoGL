@@ -26,5 +26,11 @@ namespace FrogKnightMonoGL
             X = newX;
             Y = newY;
         }
+
+        public float distanceTo(Position otherObject)
+        {
+
+            return 0.0f;
+        }
     }
 }

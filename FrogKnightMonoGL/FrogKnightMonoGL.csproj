@@ -39,7 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="CollisionDetection.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="GameEntity.cs" />
     <Compile Include="Jukebox.cs" />
     <Compile Include="FrogKnight.cs" />
     <Compile Include="Position.cs" />

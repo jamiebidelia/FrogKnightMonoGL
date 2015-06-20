@@ -5,6 +5,10 @@ using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 
 
+//June 18, 2015:  Today I want to work on building a basic collision detection system.
+//It does not have to be finished, but it does have to work a limited domain.
+
+
 
 namespace FrogKnightMonoGL
 {
@@ -17,6 +21,8 @@ namespace FrogKnightMonoGL
     {
 
         Character mainCharacter;
+        GameEntity titleEntity;  //For showing the title.
+
         Controller controller;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -45,9 +51,13 @@ namespace FrogKnightMonoGL
             controller = new Controller();
             mainCharacter = new Character();
 
+            titleEntity = new GameEntity();
+            titleEntity.MyPosition.X = 100;
+            titleEntity.MyPosition.Y = 1;
+
             //For testing moving around the screen.
-            mainCharacter.myPosition.X = 300;
-            mainCharacter.myPosition.Y = 100;
+            mainCharacter.MyPosition.X = 300;
+            mainCharacter.MyPosition.Y = 100;
 
             Content.RootDirectory = "Content";
             jukeBox = new Jukebox(this);
@@ -90,6 +100,17 @@ namespace FrogKnightMonoGL
             controller.KeyCheck(this);
             mainCharacter.move(controller);
 
+
+            //This shows that the basic collision detection does work.  However there is a lot to be desired.
+            //It currently does not stop the character from moving over objects.
+            //It merely knows it is happening.
+            //I would like to find a better way to visualize the circles and squares we want to create with collision detection.
+            //This may require some thinking on my part.
+            if ( CollisionDetection.areColliding(mainCharacter, titleEntity) )
+                {
+                    Exit();
+                }
+
             base.Update(gameTime);
         }
 
@@ -107,9 +128,9 @@ namespace FrogKnightMonoGL
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(titleLogo, new Vector2(100, 001), Color.White);
+            spriteBatch.Draw(titleLogo, new Vector2(titleEntity.MyPosition.X, titleEntity.MyPosition.Y), Color.White);
 
-            spriteBatch.Draw(frogImage, new Vector2(mainCharacter.myPosition.X, mainCharacter.myPosition.Y), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(frogImage, new Vector2(mainCharacter.MyPosition.X, mainCharacter.MyPosition.Y), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f);
 
             spriteBatch.End();
 
